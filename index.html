@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>よくあるご質問 | ますみクリニック</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --forest: #4A6741;
+    --forest-deep: #33492D;
+    --gold: #C9A84C;
+    --gold-soft: #E4D2A0;
+    --paper: #FAF7F0;
+    --paper-panel: #FFFFFF;
+    --ink: #2E3328;
+    --ink-soft: #6B7263;
+    --line: #E3DFD1;
+    --radius: 14px;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background: var(--paper);
+    background-image:
+      radial-gradient(circle at 8% 0%, rgba(74,103,65,0.06), transparent 40%),
+      radial-gradient(circle at 100% 20%, rgba(201,168,76,0.08), transparent 45%);
+    color: var(--ink);
+    font-family: "Noto Sans JP", -apple-system, "Hiragino Sans", sans-serif;
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+
+  .wrap{
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 44px 20px 80px;
+  }
+
+  /* ---------- Header ---------- */
+  header{
+    text-align: center;
+    margin-bottom: 34px;
+  }
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-size: 12px;
+    letter-spacing: 0.28em;
+    color: var(--forest);
+    font-weight: 700;
+    margin-bottom: 14px;
+  }
+  .eyebrow::before, .eyebrow::after{
+    content:"";
+    width: 18px;
+    height: 1px;
+    background: var(--gold);
+  }
+  h1{
+    font-family: "Shippori Mincho", serif;
+    font-weight: 800;
+    font-size: clamp(26px, 6vw, 34px);
+    margin: 0 0 10px;
+    color: var(--forest-deep);
+    letter-spacing: 0.02em;
+  }
+  .lede{
+    color: var(--ink-soft);
+    font-size: 14.5px;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  /* signature botanical divider */
+  .sprig{
+    display:block;
+    margin: 22px auto 0;
+    width: 120px;
+    height: 22px;
+    opacity: 0.9;
+  }
+
+  /* ---------- Hero CTA ---------- */
+  .cta-row{
+    display:flex;
+    gap:10px;
+    justify-content:center;
+    flex-wrap:wrap;
+    margin-top: 26px;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-size: 13.5px;
+    font-weight: 700;
+    padding: 12px 22px;
+    border-radius: 999px;
+    text-decoration:none;
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .btn-primary{
+    background: var(--forest);
+    color: #fff;
+    box-shadow: 0 8px 20px rgba(74,103,65,0.25);
+  }
+  .btn-primary:hover{ transform: translateY(-1px); box-shadow: 0 10px 24px rgba(74,103,65,0.32); }
+  .btn-ghost{
+    background: transparent;
+    color: var(--forest-deep);
+    border: 1px solid var(--line);
+  }
+  .btn-ghost:hover{ border-color: var(--gold); }
+
+  /* ---------- Category chips ---------- */
+  .cats{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    justify-content:center;
+    margin: 28px 0 30px;
+  }
+  .cat-chip{
+    border:1px solid var(--line);
+    background: var(--paper-panel);
+    color: var(--ink-soft);
+    font-size: 12.5px;
+    padding: 7px 14px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all .18s ease;
+    font-weight: 500;
+  }
+  .cat-chip:hover{ border-color: var(--gold); color: var(--forest-deep); }
+  .cat-chip.active{
+    background: var(--forest);
+    border-color: var(--forest);
+    color: #fff;
+  }
+
+  /* ---------- Accordion ---------- */
+  .group-title{
+    font-family:"Shippori Mincho", serif;
+    font-size: 14px;
+    color: var(--gold);
+    letter-spacing: 0.12em;
+    margin: 34px 2px 10px;
+    font-weight: 600;
+  }
+  .group-title:first-of-type{ margin-top: 0; }
+
+  .item{
+    background: var(--paper-panel);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    margin-bottom: 10px;
+    overflow: hidden;
+    transition: border-color .2s ease, box-shadow .2s ease;
+  }
+  .item.open{
+    border-color: var(--gold-soft);
+    box-shadow: 0 6px 18px rgba(74,103,65,0.07);
+  }
+
+  .q{
+    width: 100%;
+    display:flex;
+    align-items:flex-start;
+    gap: 14px;
+    text-align:left;
+    background: none;
+    border: none;
+    padding: 17px 18px;
+    cursor: pointer;
+    font-family: inherit;
+    color: var(--ink);
+  }
+  .q-mark{
+    flex: none;
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    background: var(--forest);
+    color: #fff;
+    font-family:"Shippori Mincho", serif;
+    font-weight: 700;
+    font-size: 13px;
+    display:flex; align-items:center; justify-content:center;
+    margin-top: 1px;
+  }
+  .q-text{
+    flex: 1;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--forest-deep);
+    padding-top: 3px;
+  }
+  .q-toggle{
+    flex: none;
+    width: 20px; height: 20px;
+    margin-top: 4px;
+    position: relative;
+  }
+  .q-toggle::before, .q-toggle::after{
+    content:"";
+    position:absolute;
+    background: var(--gold);
+    border-radius: 2px;
+    transition: transform .25s ease;
+  }
+  .q-toggle::before{ width: 14px; height: 2px; top: 9px; left: 3px; }
+  .q-toggle::after{ width: 2px; height: 14px; left: 9px; top: 3px; }
+  .item.open .q-toggle::after{ transform: scaleY(0); }
+
+  .a-wrap{
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .28s ease;
+  }
+  .a{
+    padding: 0 18px 18px 58px;
+    font-size: 14px;
+    color: var(--ink-soft);
+    white-space: pre-line;
+  }
+
+  /* ---------- Footer ---------- */
+  footer{
+    margin-top: 46px;
+    text-align: center;
+  }
+  .contact-card{
+    background: linear-gradient(135deg, var(--forest) 0%, var(--forest-deep) 100%);
+    color: #fff;
+    border-radius: var(--radius);
+    padding: 24px 20px;
+  }
+  .contact-card p{
+    margin: 0 0 12px;
+    font-size: 13.5px;
+    color: rgba(255,255,255,0.88);
+  }
+  .contact-card .clinic-name{
+    font-family:"Shippori Mincho", serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--gold-soft);
+    margin-bottom: 6px;
+  }
+  .tel{
+    display:inline-block;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: #fff;
+    text-decoration: none;
+    border-bottom: 1px solid var(--gold);
+    padding-bottom: 2px;
+  }
+  .fine{
+    margin-top: 22px;
+    font-size: 11.5px;
+    color: var(--ink-soft);
+    opacity: 0.7;
+  }
+
+  @media (max-width: 380px){
+    .wrap{ padding: 32px 14px 60px; }
+    .q{ padding: 15px; gap: 10px; }
+    .a{ padding-left: 50px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">MASUMI CLINIC</div>
+    <h1>よくあるご質問</h1>
+    <p class="lede">ますみクリニックのご来院前に、気になることをまとめました。<br>該当の質問をタップすると回答が開きます。</p>
+    <svg class="sprig" viewBox="0 0 120 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2 11 C30 -3, 90 -3, 118 11" stroke="#C9A84C" stroke-width="1.2" opacity="0.6"/>
+      <circle cx="60" cy="11" r="3.4" fill="#4A6741"/>
+      <circle cx="46" cy="8.5" r="2" fill="#C9A84C"/>
+      <circle cx="74" cy="8.5" r="2" fill="#C9A84C"/>
+    </svg>
+
+    <div class="cta-row">
+      <!-- ▼ 予約リンクのURLは、デジスマアプリの予約ページURLに差し替えてください -->
+      <a class="btn btn-primary" href="https://qr.digikar-smart.jp/83a8c799-09e8-476d-b40d-5d538701b10b/reserve" target="_blank" rel="noopener">ご予約はこちら</a>
+      <a class="btn btn-ghost" href="tel:0958958537">お電話で相談する</a>
+    </div>
+  </header>
+
+  <!-- カテゴリー絞り込み -->
+  <div class="cats" id="cats"></div>
+
+  <!-- Q&A本体 -->
+  <div id="faq-root"></div>
+
+  <footer>
+    <div class="contact-card">
+      <div class="clinic-name">ますみクリニック</div>
+      <p>その他ご不明な点は、お気軽にLINEまたはお電話でお問い合わせください</p>
+      <a class="tel" href="tel:0958958537">TEL 095-895-8537</a>
+    </div>
+    <p class="fine">ベアビル101 長崎市戸町2丁目20-57</p>
+  </footer>
+
+</div>
+
+<script>
+/* =====================================================================
+   ▼▼▼ ここから下の FAQ_DATA だけを編集すれば内容を更新できます ▼▼▼
+   ---------------------------------------------------------------------
+   ・category : 質問のグループ名(自由に追加・変更可)
+   ・q        : 質問文
+   ・a        : 回答文(改行したい場合は \n を使ってください)
+   ・新しい質問を増やす場合は { category:"…", q:"…", a:"…" }, を
+     配列の好きな位置にコピーして追加してください。
+   ===================================================================== */
+const FAQ_DATA = [
+  { category: "ご予約について",
+    q: "初めてでも予約は必要ですか?",
+    a: "はい、初診の方もご予約をお願いしております。\nLINEの「ご予約はこちら」ボタン、またはお電話(095-895-8537)からお取りいただけます。" },
+  { category: "ご予約について",
+    q: "キャンセル・予約変更はどうすればいいですか?",
+    a: "キャンセルはお早めに、前日までにはご連絡ください。\n予約変更はデジスマアプリ、もしくはお電話にて承ります。" },
+
+  { category: "受診にあたって",
+    q: "保険証は毎回必要ですか?",
+    a: "はい。マイナンバーカード、もしくは資格確認書をご持参ください。また、保険情報に変更があった際はお早めにスタッフまでお知らせください。保険情報が確認できない場合、一旦10割負担でお支払いいただき、保険情報が確認できましたら返金させていただきます。" },
+  { category: "受診にあたって",
+    q: "生理中でも受診できますか?",
+    a: "当院は婦人科ではなく一般内科ですので内診は致しませんので生理中でも問題ございません。尿検査が必要な場合は別の日に尿検査をさせていただくこともございます。" },
+  { category: "受診にあたって",
+    q: "家族や友人の同伴は可能ですか?",
+    a: "可能です。特に制限はございません。" },
+  { category: "受診にあたって",
+    q: "診療にはどのくらい時間がかかりますか?",
+    a: "初診は問診・検査を含め60分程度、再診は30分程度を目安にしておりますが、患者様の状態等によりますので、正確な時間はお答えしかねます。また、ご予約時間におきましてもご予約優先となっておりますので、予約時間通りに進むわけではないこともご承知おきくださいますと幸いです。" },
+
+  { category: "当院について",
+    q: "男性医師・スタッフはいますか?",
+    a: "当院は女性専用内科として、女性スタッフを中心に診療を行っております。" },
+  { category: "当院について",
+    q: "プライバシーは守られますか?",
+    a: "女性専用のクリニックとして、お一人おひとりのプライバシーに配慮した診療体制を整えております。" },
+  { category: "当院について",
+    q: "オンライン診療はありますか?",
+    a: "症状や内容によって対応可否が異なります。詳しくはお電話またはLINEにてお問い合わせください。" },
+];
+/* ▲▲▲ ここまで ▲▲▲ ================================================= */
+
+const root = document.getElementById('faq-root');
+const catsEl = document.getElementById('cats');
+const categories = ["すべて", ...new Set(FAQ_DATA.map(item => item.category))];
+let activeCat = "すべて";
+
+function render(){
+  root.innerHTML = "";
+  const visible = FAQ_DATA.filter(i => activeCat === "すべて" || i.category === activeCat);
+  const grouped = {};
+  visible.forEach(i => {
+    grouped[i.category] = grouped[i.category] || [];
+    grouped[i.category].push(i);
+  });
+
+  Object.keys(grouped).forEach(cat => {
+    const title = document.createElement('div');
+    title.className = 'group-title';
+    title.textContent = cat;
+    root.appendChild(title);
+
+    grouped[cat].forEach((item, idx) => {
+      const el = document.createElement('div');
+      el.className = 'item';
+      el.innerHTML = `
+        <button class="q" type="button">
+          <span class="q-mark">Q</span>
+          <span class="q-text">${item.q}</span>
+          <span class="q-toggle"></span>
+        </button>
+        <div class="a-wrap"><div class="a">${item.a}</div></div>
+      `;
+      const btn = el.querySelector('.q');
+      const wrap = el.querySelector('.a-wrap');
+      btn.addEventListener('click', () => {
+        const isOpen = el.classList.contains('open');
+        el.classList.toggle('open', !isOpen);
+        wrap.style.maxHeight = isOpen ? null : wrap.scrollHeight + "px";
+      });
+      root.appendChild(el);
+    });
+  });
+}
+
+categories.forEach(cat => {
+  const chip = document.createElement('button');
+  chip.className = 'cat-chip' + (cat === activeCat ? ' active' : '');
+  chip.textContent = cat;
+  chip.addEventListener('click', () => {
+    activeCat = cat;
+    document.querySelectorAll('.cat-chip').forEach(c => c.classList.remove('active'));
+    chip.classList.add('active');
+    render();
+  });
+  catsEl.appendChild(chip);
+});
+
+render();
+</script>
+
+</body>
+</html>
